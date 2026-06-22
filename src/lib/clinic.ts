@@ -35,7 +35,16 @@ export function whatsappLink(message: string): string {
   return `https://wa.me/${CLINIC.phoneRaw}?text=${encoded}`;
 }
 
-export const NAV_LINKS = [
+export const HEADER_NAV = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/doctors", label: "Doctors" },
+  { href: "/services", label: "Services" },
+  { href: "/book-appointment", label: "Book Appointment" },
+  { href: "/contact", label: "Contact" },
+];
+
+export const FOOTER_NAV = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/doctors", label: "Doctors" },

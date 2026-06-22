@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CLINIC, NAV_LINKS } from "@/lib/clinic";
+import { CLINIC, FOOTER_NAV } from "@/lib/clinic";
 
 export function Footer() {
   return (
@@ -22,7 +22,7 @@ export function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-3">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            {NAV_LINKS.map((l) => (
+            {FOOTER_NAV.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-slate-400 hover:text-white">
                   {l.label}

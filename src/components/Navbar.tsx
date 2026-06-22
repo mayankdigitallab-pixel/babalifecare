@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CLINIC, NAV_LINKS } from "@/lib/clinic";
+import { CLINIC, HEADER_NAV } from "@/lib/clinic";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-6">
-          {NAV_LINKS.map((l) => (
+          {HEADER_NAV.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -77,7 +77,7 @@ export function Navbar() {
       {open && (
         <div className="lg:hidden border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-1">
-            {NAV_LINKS.map((l) => (
+            {HEADER_NAV.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
