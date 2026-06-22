@@ -186,20 +186,16 @@ export default function ServicesPage() {
       </section>
 
       <section className="bg-red-600 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 md:py-10">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-            <span className="inline-flex items-center justify-center rounded-full bg-white text-red-600 font-bold px-4 py-1.5 text-xs uppercase tracking-wider shrink-0">
-              विशेष सूचना · Special Note
-            </span>
-            <div className="flex-1">
-              <p className="text-base md:text-lg font-semibold leading-relaxed">
-                जिन बच्चों के माता-पिता नहीं हैं एवं 60 वर्ष से अधिक उम्र के लोगों का नि:शुल्क परामर्श।
-              </p>
-              <p className="mt-1 text-sm text-white/90">
-                Free consultation always for orphaned children and senior citizens above 60 years of age.
-              </p>
-            </div>
-          </div>
+        <div className="mx-auto max-w-7xl px-4 py-10 md:py-14 text-center">
+          <span className="inline-flex items-center justify-center rounded-full bg-white text-red-600 font-bold px-4 py-1.5 text-xs uppercase tracking-wider">
+            विशेष सूचना · Special Note
+          </span>
+          <p className="mt-5 text-lg md:text-2xl font-semibold leading-relaxed max-w-4xl mx-auto">
+            जिन बच्चों के माता-पिता नहीं हैं एवं 60 वर्ष से अधिक उम्र के लोगों का नि:शुल्क परामर्श।
+          </p>
+          <p className="mt-3 text-sm md:text-base text-white/90 max-w-3xl mx-auto">
+            Free consultation always for orphaned children and senior citizens above 60 years of age.
+          </p>
         </div>
       </section>
 
