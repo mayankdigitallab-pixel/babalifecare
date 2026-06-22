@@ -19,7 +19,7 @@ export default function GalleryPage() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 to-brand-dark/70" />
+        <div className="absolute inset-0 brand-hero-overlay" />
         <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-10 text-white">
           <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Gallery</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">A look inside our clinic</h1>

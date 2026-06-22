@@ -28,3 +28,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+.brand-hero-overlay {
+  background: linear-gradient(115deg, rgba(10, 91, 75, 0.92) 0%, rgba(14, 124, 102, 0.75) 60%, rgba(0, 0, 0, 0.4) 100%);
+}
