@@ -148,6 +148,17 @@ export default function ContactPage() {
               title="Clinic location"
             />
           </div>
+          <div className="mt-4 text-center">
+            <a
+              href={CLINIC.mapsDirections}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 font-medium hover:bg-brand-dark"
+            >
+              <span>🧭</span> Get Directions
+              <span className="text-sm opacity-90">· दिशा प्राप्त करें</span>
+            </a>
+          </div>
         </div>
       </section>
     </>

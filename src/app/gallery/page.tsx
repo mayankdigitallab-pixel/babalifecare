@@ -22,7 +22,9 @@ export default function GalleryPage() {
         <div className="absolute inset-0 brand-hero-overlay" />
         <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-10 text-white">
           <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Gallery</p>
+          <p className="text-xs opacity-80">गैलरी</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">A look inside our clinic</h1>
+          <p className="mt-1 text-lg opacity-95 font-medium">हमारे क्लिनिक की एक झलक</p>
           <p className="mt-3 max-w-3xl text-lg opacity-95">
             Clean, comfortable, and equipped with everything needed for quality care.
           </p>

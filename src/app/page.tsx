@@ -123,23 +123,30 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <span className="text-sm font-semibold text-brand uppercase tracking-wider">Why Choose Us</span>
+            <p className="text-xs text-slate-500">हमें क्यों चुनें</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
               Trusted by thousands across UP and Bihar
             </h2>
+            <p className="mt-1 text-base font-medium text-slate-700">
+              यूपी और बिहार के हजारों मरीजों का भरोसा
+            </p>
             <ul className="mt-6 space-y-3 text-slate-700">
               {[
-                "Registered multi-specialty clinic with experienced doctors",
-                "Real-time appointment booking with WhatsApp confirmation",
-                "Video consultation for patients far from the clinic",
-                "Nebulizer (steam therapy) and oxygen facility on-site",
-                "Free Friday consultation (Nishulk Paramarsh)",
-                "Free consultation always for orphans and seniors 60+",
-                "24x7 emergency contact support",
-                "Affordable pricing with transparent fees",
+                { en: "Registered multi-specialty clinic with experienced doctors", hi: "अनुभवी डॉक्टरों के साथ पंजीकृत मल्टी-स्पेशियलिटी क्लिनिक" },
+                { en: "Real-time appointment booking with WhatsApp confirmation", hi: "व्हाट्सएप पुष्टि के साथ अपॉइंटमेंट बुकिंग" },
+                { en: "Video consultation for patients far from the clinic", hi: "दूर के मरीजों के लिए वीडियो परामर्श" },
+                { en: "Nebulizer (steam therapy) and oxygen facility on-site", hi: "नेबुलाइजर (भाप) एवं ऑक्सीजन की सुविधा उपलब्ध" },
+                { en: "Free Friday consultation (Nishulk Paramarsh)", hi: "शुक्रवार नि:शुल्क परामर्श" },
+                { en: "Free consultation always for orphans and seniors 60+", hi: "अनाथ बच्चों एवं 60+ वरिष्ठ नागरिकों के लिए हमेशा नि:शुल्क" },
+                { en: "24x7 emergency contact support", hi: "24x7 आपातकालीन सहायता" },
+                { en: "Affordable pricing with transparent fees", hi: "किफायती मूल्य, पारदर्शी शुल्क" },
               ].map((p) => (
-                <li key={p} className="flex gap-2">
-                  <span className="text-brand">✓</span>
-                  <span>{p}</span>
+                <li key={p.en} className="flex gap-2">
+                  <span className="text-brand mt-1">✓</span>
+                  <div>
+                    <span className="block">{p.en}</span>
+                    <span className="block text-sm text-slate-500">{p.hi}</span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -177,10 +184,15 @@ export default function HomePage() {
             <span className="inline-block rounded-full bg-red-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
               24x7 Emergency
             </span>
+            <p className="text-xs text-slate-400 mt-2">24x7 आपातकालीन सेवा</p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold">Need help now?</h2>
+            <p className="mt-1 text-base text-slate-300">अभी मदद चाहिए?</p>
             <p className="mt-3 text-slate-300">
               Our 24x7 line is staffed by clinic personnel ready to guide you to
               the right care. Oxygen and nebulizer available on-site.
+            </p>
+            <p className="mt-2 text-sm text-slate-400">
+              हमारी 24x7 हेल्पलाइन क्लिनिक स्टाफ द्वारा संचालित है। ऑक्सीजन एवं नेबुलाइजर उपलब्ध।
             </p>
             <a
               href={`tel:${CLINIC.phoneRaw}`}

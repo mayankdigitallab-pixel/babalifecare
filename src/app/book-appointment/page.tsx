@@ -22,7 +22,9 @@ export default function BookAppointmentPage() {
         <div className="absolute inset-0 brand-hero-overlay" />
         <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-12 text-white">
           <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Book Appointment</p>
+          <p className="text-xs opacity-80">अपॉइंटमेंट बुक करें</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">See a doctor, online or in-clinic</h1>
+          <p className="mt-1 text-lg opacity-95 font-medium">डॉक्टर से मिलें, ऑनलाइन या क्लिनिक में</p>
           <p className="mt-3 max-w-3xl text-lg opacity-95">
             Fill in your details below. We will confirm your slot on WhatsApp
             within a few minutes during clinic hours.

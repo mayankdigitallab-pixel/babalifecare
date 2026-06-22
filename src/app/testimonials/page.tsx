@@ -62,7 +62,9 @@ export default function TestimonialsPage() {
         <div className="absolute inset-0 brand-hero-overlay" />
         <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-12 text-white">
           <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Testimonials</p>
+          <p className="text-xs opacity-80">मरीजों की समीक्षा</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">What our patients say</h1>
+          <p className="mt-1 text-lg opacity-95 font-medium">हमारे मरीज क्या कहते हैं</p>
           <p className="mt-3 max-w-3xl text-lg opacity-95">
             Real stories from patients across UP and Bihar.
           </p>

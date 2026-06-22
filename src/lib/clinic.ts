@@ -27,7 +27,9 @@ export const CLINIC = {
   freeConsultLabel: "Nishulk Paramarsh (Free Consultation)",
   facilities: ["Nebulizer (Steam Therapy)", "Oxygen Facility"],
   mapsEmbed:
-    "https://www.google.com/maps?q=Salempur+Mairwa+Deoria+Uttar+Pradesh&output=embed",
+    "https://www.google.com/maps?q=Salempur+Mairwa+Road+Deoria+Uttar+Pradesh+274509&output=embed&z=14",
+  mapsDirections:
+    "https://www.google.com/maps/dir/?api=1&destination=Salempur+Mairwa+Road+Deoria+Uttar+Pradesh+274509",
 };
 
 export function whatsappLink(message: string): string {

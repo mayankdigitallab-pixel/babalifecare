@@ -82,7 +82,9 @@ export default function ServicesPage() {
         <div className="absolute inset-0 brand-hero-overlay" />
         <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-14 text-white">
           <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Services & Treatments</p>
+          <p className="text-xs opacity-80">सेवाएं एवं उपचार</p>
           <h1 className="mt-2 text-4xl md:text-5xl font-bold">Complete care, every step</h1>
+          <p className="mt-1 text-lg opacity-95 font-medium">हर कदम पर संपूर्ण देखभाल</p>
           <p className="mt-4 max-w-3xl text-lg opacity-95">
             From routine check-ups to specialist consultations, we offer a wide
             range of services for patients of all ages.
