@@ -2,16 +2,8 @@ import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
 import { HeroSlider } from "@/components/HeroSlider";
 import { ConditionsSection } from "@/components/ConditionsSection";
+import { ServicesGrid } from "@/components/ServicesGrid";
 import { IMAGES } from "@/lib/images";
-
-const services = [
-  { icon: "🩺", title: "General Medicine", desc: "Comprehensive primary care for all age groups." },
-  { icon: "👶", title: "Pediatric Care", desc: "Newborn and child specialist care by Dr. K. D. Patel." },
-  { icon: "🦴", title: "Orthopaedics & Spine", desc: "Bone, joint and spine specialist Dr. Ashish Kumar Singh." },
-  { icon: "🧠", title: "Neuro Medicine", desc: "AIIMS Delhi trained neuro consultation, every Sunday." },
-  { icon: "🌿", title: "Ayurvedic Care", desc: "Traditional Ayurveda by MD (Ayu) Dr. Pradeep Singh." },
-  { icon: "📹", title: "Video Consultation", desc: "Talk to a doctor from anywhere, on your phone." },
-];
 
 const highlights = [
   { num: "10+", label: "Years of Service" },
@@ -40,29 +32,24 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
           <div className="max-w-2xl">
             <span className="text-sm font-semibold text-brand uppercase tracking-wider">Our Services</span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
+            <p className="text-xs text-slate-500 mt-0.5">हमारी सेवाएं</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold text-slate-900">
               Complete care under one roof
             </h2>
-            <p className="mt-3 text-slate-600">
+            <p className="mt-1 text-base md:text-lg font-medium text-slate-700">
+              एक छत के नीचे संपूर्ण देखभाल
+            </p>
+            <p className="mt-4 text-slate-600">
               From routine check-ups to specialist consultation, we provide
               compassionate care for every member of your family.
             </p>
+            <p className="mt-1 text-sm text-slate-500">
+              नियमित जांच से लेकर विशेषज्ञ परामर्श तक, हम आपके परिवार के हर सदस्य की देखभाल करते हैं।
+            </p>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="rounded-2xl bg-white p-6 border border-slate-200 hover:border-brand hover:shadow-md transition">
-                <div className="text-3xl">{s.icon}</div>
-                <h3 className="mt-3 text-lg font-semibold text-slate-900">{s.title}</h3>
-                <p className="mt-1.5 text-sm text-slate-600">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link href="/services" className="text-brand font-medium hover:underline">
-              See all services →
-            </Link>
+          <div className="mt-10">
+            <ServicesGrid initialCount={6} showToggle />
           </div>
         </div>
       </section>
