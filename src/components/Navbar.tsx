@@ -9,37 +9,37 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur border-b border-slate-200">
-      <div className="bg-slate-900 text-white text-xs">
-        <div className="mx-auto max-w-7xl px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
-          <span className="font-medium text-amber-300">{CLINIC.taglineHindi}</span>
+      <div className="bg-slate-900 text-white text-sm font-semibold">
+        <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+          <span className="text-amber-300 text-base">{CLINIC.taglineHindi}</span>
           <span className="hidden sm:inline">Reg. No. {CLINIC.registration}</span>
         </div>
       </div>
 
-      <div className="bg-brand text-white text-xs">
-        <div className="mx-auto max-w-7xl px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
-          <span>Emergency 24x7 · Call {CLINIC.phone} / {CLINIC.phoneAlt}</span>
+      <div className="bg-red-600 text-white text-sm font-semibold">
+        <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+          <span>🚨 Emergency 24x7 · Call {CLINIC.phone} / {CLINIC.phoneAlt}</span>
           <span className="hidden sm:inline">{CLINIC.freeConsultDay}: {CLINIC.freeConsultLabel}</span>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-brand text-white font-bold">B</span>
-          <span className="font-semibold text-slate-900 leading-tight">
+      <div className="mx-auto max-w-7xl px-4 h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-brand text-white font-extrabold text-xl">B</span>
+          <span className="font-extrabold text-slate-900 leading-tight text-xl md:text-2xl">
             {CLINIC.name.split(" ").slice(0, 2).join(" ")}
-            <span className="block text-[10px] font-normal text-slate-500 uppercase tracking-wider">
+            <span className="block text-sm font-semibold text-brand uppercase tracking-wider">
               {CLINIC.name.split(" ").slice(2).join(" ")}
             </span>
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-7">
           {HEADER_NAV.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-slate-700 hover:text-brand transition-colors"
+              className="text-base font-semibold text-slate-800 hover:text-brand transition-colors"
             >
               {l.label}
             </Link>
@@ -47,12 +47,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href={`tel:${CLINIC.phoneRaw}`} className="text-sm font-medium text-slate-700 hover:text-brand">
+          <a href={`tel:${CLINIC.phoneRaw}`} className="text-base font-bold text-slate-800 hover:text-brand">
             {CLINIC.phone}
           </a>
           <Link
             href="/book-appointment"
-            className="inline-flex items-center rounded-full bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark transition-colors"
+            className="inline-flex items-center rounded-full bg-brand px-5 py-2.5 text-base font-semibold text-white hover:bg-brand-dark transition-colors"
           >
             Book Appointment
           </Link>

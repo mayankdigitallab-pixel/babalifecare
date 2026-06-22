@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
 import { HeroSlider } from "@/components/HeroSlider";
+import { ConditionsSection } from "@/components/ConditionsSection";
 import { IMAGES } from "@/lib/images";
 
 const services = [
@@ -23,23 +24,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider />
-
-      <section className="bg-gradient-to-r from-amber-400 to-amber-500">
-        <div className="mx-auto max-w-7xl px-4 py-6 md:py-7 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center md:text-left">
-          <span className="text-sm font-bold uppercase tracking-wider text-red-700 px-3 py-1 rounded-full bg-white">
-            Friday Special
-          </span>
-          <p className="text-2xl md:text-3xl font-extrabold text-slate-900">
-            प्रत्येक शुक्रवार <span className="text-red-700">नि:शुल्क परामर्श</span>
-          </p>
-          <Link
-            href="/book-appointment"
-            className="inline-flex items-center rounded-full bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800"
-          >
-            Book Now
-          </Link>
-        </div>
-      </section>
 
       <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -83,6 +67,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ConditionsSection background="white" />
+
+      <section className="relative bg-gradient-to-r from-amber-400 to-amber-500">
+        <div className="mx-auto max-w-7xl px-4 py-14 md:py-20 text-center text-slate-900">
+          <p className="text-sm font-bold uppercase tracking-wider text-red-700">Friday Special</p>
+          <p className="mt-1 text-xs font-medium text-red-700/80">शुक्रवार विशेष</p>
+          <h2 className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight">
+            प्रत्येक शुक्रवार
+          </h2>
+          <p className="mt-1 text-4xl md:text-6xl font-extrabold text-red-700 leading-tight">
+            नि:शुल्क परामर्श
+          </p>
+          <p className="mt-6 text-base md:text-lg max-w-2xl mx-auto">
+            Free consultation every Friday for all patients. Book your slot in advance.
+          </p>
+          <p className="mt-1 text-sm md:text-base text-slate-700 max-w-2xl mx-auto">
+            हर शुक्रवार सभी मरीजों के लिए नि:शुल्क परामर्श। अपना स्लॉट पहले से बुक करें।
+          </p>
+          <Link
+            href="/book-appointment"
+            className="mt-8 inline-flex items-center rounded-full bg-slate-900 text-white px-7 py-3.5 font-semibold hover:bg-slate-800 shadow-lg"
+          >
+            Book Friday Slot
+          </Link>
+        </div>
+        <div className="h-2 w-full bg-red-600" />
+      </section>
+
       <section className="bg-red-600 text-white">
         <div className="mx-auto max-w-7xl px-4 py-8 md:py-10">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
@@ -101,29 +113,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-brand">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:py-16 grid md:grid-cols-3 gap-6 items-center">
-          <div className="md:col-span-2 text-white">
-            <h2 className="text-2xl md:text-3xl font-bold">Ready to see a doctor?</h2>
-            <p className="mt-2 text-white/85">
-              Book an in-clinic visit or video consultation in minutes. Slot
-              confirmation via WhatsApp.
-            </p>
-          </div>
-          <div className="flex md:justify-end gap-3">
-            <Link
-              href="/book-appointment"
-              className="inline-flex items-center rounded-full bg-white text-brand px-6 py-3 font-medium hover:bg-slate-100"
-            >
-              Book Now
-            </Link>
-            <a
-              href={`tel:${CLINIC.phoneRaw}`}
-              className="inline-flex items-center rounded-full border border-white/40 text-white px-6 py-3 font-medium hover:bg-white/10"
-            >
-              Call
-            </a>
-          </div>
+      <section className="bg-brand text-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 md:py-20 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Not sure which doctor to see?
+          </h2>
+          <p className="mt-1 text-sm md:text-base text-white/80">
+            किस डॉक्टर से मिलें, यह तय नहीं हो पा रहा?
+          </p>
+          <p className="mt-5 text-base md:text-lg max-w-2xl mx-auto text-white/90">
+            Send us a quick message and we will guide you to the right specialist.
+          </p>
+          <p className="mt-1 text-sm md:text-base max-w-2xl mx-auto text-white/80">
+            हमें एक संदेश भेजें, हम आपको सही विशेषज्ञ के पास भेजेंगे।
+          </p>
+          <Link
+            href="/book-appointment"
+            className="mt-8 inline-flex items-center rounded-full bg-white text-brand px-7 py-3.5 font-semibold hover:bg-slate-100 shadow-lg"
+          >
+            Book a consultation
+          </Link>
         </div>
       </section>
 
