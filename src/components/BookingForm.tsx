@@ -10,10 +10,10 @@ const doctorOptions = [
 ];
 
 const timeSlots = [
-  "09:00 AM – 11:00 AM",
-  "11:00 AM – 01:00 PM",
-  "04:00 PM – 06:00 PM",
-  "06:00 PM – 08:00 PM",
+  "09:00 AM - 11:00 AM",
+  "11:00 AM - 01:00 PM",
+  "04:00 PM - 06:00 PM",
+  "06:00 PM - 08:00 PM",
 ];
 
 export function BookingForm() {
@@ -21,7 +21,7 @@ export function BookingForm() {
     name: "",
     phone: "",
     age: "",
-    type: "In-Clinic Visit",
+    type: "In-Clinic Visit" as "In-Clinic Visit" | "Video Consultation",
     department: doctorOptions[0],
     date: "",
     slot: timeSlots[0],
@@ -96,14 +96,14 @@ export function BookingForm() {
         </Field>
         <Field label="Consultation Type *">
           <div className="flex gap-3">
-            {["In-Clinic Visit", "Video Consultation"].map((t) => (
+            {(["In-Clinic Visit", "Video Consultation"] as const).map((t) => (
               <label key={t} className={`flex-1 cursor-pointer rounded-lg border px-3 py-2.5 text-sm text-center transition ${form.type === t ? "border-brand bg-brand-light text-brand font-medium" : "border-slate-300 bg-white text-slate-700"}`}>
                 <input
                   type="radio"
                   name="type"
                   value={t}
                   checked={form.type === t}
-                  onChange={(e) => update("type", e.target.value)}
+                  onChange={() => update("type", t)}
                   className="sr-only"
                 />
                 {t}
@@ -165,12 +165,12 @@ export function BookingForm() {
         type="submit"
         className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-white font-medium hover:bg-brand-dark transition-colors"
       >
-        Confirm via WhatsApp →
+        Send via WhatsApp →
       </button>
 
       <p className="text-xs text-slate-500 text-center">
-        Submitting opens WhatsApp with your request. Final slot is confirmed by
-        the clinic after we check doctor availability.
+        Submitting opens WhatsApp with your details pre-filled. Send the message
+        to the clinic; they will confirm your slot.
       </p>
     </form>
   );
