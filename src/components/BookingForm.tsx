@@ -1,9 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Script from "next/script";
 import { whatsappLink, CLINIC } from "@/lib/clinic";
-import { DOCTORS } from "@/lib/doctors";
+import {
+  DOCTORS,
+  getDoctorBySelection,
+  isDateAvailable,
+  availableDayNames,
+  getSlotsForDoctor,
+  DEFAULT_SLOTS,
+} from "@/lib/doctors";
 import {
   VIDEO_CONSULTATION_FEE_INR,
   VIDEO_CONSULTATION_FEE_PAISE,
@@ -13,13 +20,6 @@ import {
 const doctorOptions = [
   ...DOCTORS.map((d) => `${d.name} - ${d.role}`),
   "Not sure / Any available doctor",
-];
-
-const timeSlots = [
-  "09:00 AM - 11:00 AM",
-  "11:00 AM - 01:00 PM",
-  "04:00 PM - 06:00 PM",
-  "06:00 PM - 08:00 PM",
 ];
 
 type RazorpayResponse = {
@@ -42,11 +42,24 @@ export function BookingForm() {
     type: "In-Clinic Visit" as "In-Clinic Visit" | "Video Consultation",
     department: doctorOptions[0],
     date: "",
-    slot: timeSlots[0],
+    slot: DEFAULT_SLOTS[0],
     concern: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [info, setInfo] = useState<string | null>(null);
+
+  const selectedDoctor = useMemo(
+    () => getDoctorBySelection(form.department),
+    [form.department]
+  );
+  const slotOptions = useMemo(() => getSlotsForDoctor(selectedDoctor), [selectedDoctor]);
+  const dateValid = isDateAvailable(form.date, selectedDoctor);
+
+  useEffect(() => {
+    if (!slotOptions.includes(form.slot)) {
+      setForm((f) => ({ ...f, slot: slotOptions[0] }));
+    }
+  }, [slotOptions, form.slot]);
 
   function update<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -114,6 +127,14 @@ export function BookingForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!dateValid && selectedDoctor) {
+      setInfo(
+        `${selectedDoctor.name} is only available on ${availableDayNames(selectedDoctor)}. Please pick a matching date.`
+      );
+      return;
+    }
+
     setSubmitting(true);
     setInfo(null);
 
@@ -125,7 +146,6 @@ export function BookingForm() {
       return;
     }
 
-    // Video consultation. Try Razorpay; fall back to WhatsApp-only if not configured.
     let orderRes: Response;
     try {
       orderRes = await fetch("/api/razorpay/order", {
@@ -146,7 +166,7 @@ export function BookingForm() {
 
     if (orderRes.status === 503) {
       setInfo(
-        "Online payment is being set up. Your booking will be sent on WhatsApp; clinic will collect the fee at consultation time."
+        "Online payment is being set up. Your booking will go via WhatsApp; the clinic will collect the fee at consultation time."
       );
       finish({ meet_link });
       return;
@@ -173,10 +193,7 @@ export function BookingForm() {
       name: CLINIC.name,
       description: `Video Consultation - ${form.department}`,
       order_id: order.order_id,
-      prefill: {
-        name: form.name,
-        contact: form.phone,
-      },
+      prefill: { name: form.name, contact: form.phone },
       theme: { color: "#0e7c66" },
       handler: async (response: RazorpayResponse) => {
         try {
@@ -193,7 +210,7 @@ export function BookingForm() {
               payment_amount: `INR ${VIDEO_CONSULTATION_FEE_INR}`,
             });
           } else {
-            setInfo("Payment received but verification failed. Please WhatsApp the clinic with your payment ID.");
+            setInfo("Payment received but verification failed. WhatsApp the clinic with your payment ID.");
             finish({ meet_link, payment_id: response.razorpay_payment_id });
           }
         } catch (err) {
@@ -295,6 +312,11 @@ export function BookingForm() {
               <option key={d}>{d}</option>
             ))}
           </select>
+          {selectedDoctor?.availability && (
+            <p className="mt-1.5 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+              {selectedDoctor.availability}
+            </p>
+          )}
         </Field>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -305,8 +327,13 @@ export function BookingForm() {
               min={today}
               value={form.date}
               onChange={(e) => update("date", e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
+              className={`w-full rounded-lg border px-3 py-2.5 focus:outline-none focus:ring-2 ${dateValid ? "border-slate-300 focus:border-brand focus:ring-brand/20" : "border-rose-400 focus:border-rose-500 focus:ring-rose-200"}`}
             />
+            {!dateValid && selectedDoctor && (
+              <p className="mt-1.5 text-xs text-rose-700">
+                {selectedDoctor.name} sees patients on {availableDayNames(selectedDoctor)} only.
+              </p>
+            )}
           </Field>
           <Field label="Preferred Slot *">
             <select
@@ -315,7 +342,7 @@ export function BookingForm() {
               onChange={(e) => update("slot", e.target.value)}
               className="w-full rounded-lg border border-slate-300 px-3 py-2.5 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 bg-white"
             >
-              {timeSlots.map((s) => (
+              {slotOptions.map((s) => (
                 <option key={s}>{s}</option>
               ))}
             </select>
@@ -340,7 +367,7 @@ export function BookingForm() {
 
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || !dateValid}
           className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-white font-medium hover:bg-brand-dark transition-colors disabled:opacity-60"
         >
           {submitting

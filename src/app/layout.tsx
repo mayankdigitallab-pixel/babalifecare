@@ -12,6 +12,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://babalifecare.vercel.app"),
   title: {
     default: `${CLINIC.name} | Trusted Multi-Specialty Clinic in Deoria`,
     template: `%s | ${CLINIC.name}`,
@@ -25,6 +26,15 @@ export const metadata: Metadata = {
     "video consultation doctor",
     "multi-specialty clinic UP",
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: CLINIC.name,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
