@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Services & Treatments",
@@ -70,13 +71,19 @@ const conditionGroups = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-          <p className="text-sm font-semibold text-brand uppercase tracking-wider">Services & Treatments</p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900">
-            Complete care, every step
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-700">
+      <section className="relative h-[400px] md:h-[460px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={IMAGES.services.header}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand-dark/80 to-slate-900/60" />
+        <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-14 text-white">
+          <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Services & Treatments</p>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">Complete care, every step</h1>
+          <p className="mt-4 max-w-3xl text-lg opacity-95">
             From routine check-ups to specialist consultations, we offer a wide
             range of services for patients of all ages.
           </p>

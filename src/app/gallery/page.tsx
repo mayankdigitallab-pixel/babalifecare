@@ -1,34 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: `Take a look inside ${CLINIC.name} - facilities, consultation rooms, and the team.`,
 };
 
-// TODO: replace placeholder gallery with real clinic photos.
-const photos = [
-  { title: "Reception", emoji: "🏥", grad: "from-brand to-brand-dark" },
-  { title: "Waiting Area", emoji: "🛋️", grad: "from-emerald-500 to-emerald-700" },
-  { title: "Consultation Room", emoji: "🩺", grad: "from-teal-500 to-teal-700" },
-  { title: "Examination", emoji: "👨‍⚕️", grad: "from-cyan-500 to-cyan-700" },
-  { title: "Pharmacy", emoji: "💊", grad: "from-sky-500 to-sky-700" },
-  { title: "Pediatric Corner", emoji: "🧸", grad: "from-amber-500 to-amber-700" },
-  { title: "Diagnostic", emoji: "🔬", grad: "from-violet-500 to-violet-700" },
-  { title: "Front Desk", emoji: "🎫", grad: "from-rose-500 to-rose-700" },
-];
-
 export default function GalleryPage() {
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <p className="text-sm font-semibold text-brand uppercase tracking-wider">Gallery</p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900">
-            A look inside our clinic
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-700">
+      <section className="relative h-[340px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={IMAGES.contact.header}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 to-brand-dark/70" />
+        <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-10 text-white">
+          <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Gallery</p>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">A look inside our clinic</h1>
+          <p className="mt-3 max-w-3xl text-lg opacity-95">
             Clean, comfortable, and equipped with everything needed for quality care.
           </p>
         </div>
@@ -36,14 +31,18 @@ export default function GalleryPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {photos.map((p) => (
-            <div
-              key={p.title}
-              className={`group relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br ${p.grad}`}
-            >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <span className="text-5xl mb-3 transition-transform group-hover:scale-110">{p.emoji}</span>
-                <span className="font-medium">{p.title}</span>
+          {IMAGES.gallery.map((p) => (
+            <div key={p.title} className="group relative aspect-square rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={p.src}
+                alt={p.title}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
+                <p className="font-medium text-sm">{p.title}</p>
               </div>
             </div>
           ))}

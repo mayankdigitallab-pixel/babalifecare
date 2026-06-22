@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Patient Testimonials",
@@ -50,13 +51,19 @@ const reviews = [
 export default function TestimonialsPage() {
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <p className="text-sm font-semibold text-brand uppercase tracking-wider">Testimonials</p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900">
-            What our patients say
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-700">
+      <section className="relative h-[340px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={IMAGES.testimonials.header}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand-dark/80 to-slate-900/55" />
+        <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-12 text-white">
+          <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Testimonials</p>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">What our patients say</h1>
+          <p className="mt-3 max-w-3xl text-lg opacity-95">
             Real stories from patients across UP and Bihar.
           </p>
         </div>

@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { CLINIC, whatsappLink } from "@/lib/clinic";
+import { CLINIC } from "@/lib/clinic";
+import { HeroSlider } from "@/components/HeroSlider";
+import { IMAGES } from "@/lib/images";
 
 const services = [
   { icon: "🩺", title: "General Medicine", desc: "Comprehensive primary care for all age groups." },
@@ -20,71 +22,7 @@ const highlights = [
 export default function HomePage() {
   return (
     <>
-      <section className="relative bg-gradient-to-br from-brand-light to-white">
-        <div className="mx-auto max-w-7xl px-4 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
-          <div>
-            <span className="inline-flex items-center rounded-full bg-brand/10 text-brand px-3 py-1 text-xs font-medium">
-              Reg. No. {CLINIC.registration}
-            </span>
-            <h1 className="mt-4 text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-              {CLINIC.tagline}
-            </h1>
-            <p className="mt-4 text-lg text-slate-600 max-w-xl">
-              {CLINIC.name} in Salempur-Mairwa, Deoria offers expert in-clinic
-              and video consultations, 24x7 emergency care, nebulizer and
-              oxygen facility, and free Friday consultation for the community.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href="/book-appointment"
-                className="inline-flex items-center rounded-full bg-brand px-6 py-3 text-base font-medium text-white hover:bg-brand-dark transition-colors"
-              >
-                Book an Appointment
-              </Link>
-              <a
-                href={whatsappLink("Hello Baba Life Care Clinic, I have a question.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-white border border-slate-300 px-6 py-3 text-base font-medium text-slate-800 hover:border-brand hover:text-brand transition-colors"
-              >
-                Chat on WhatsApp
-              </a>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Open Now · {CLINIC.hours.weekdays}
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-accent">
-                <span className="h-2 w-2 rounded-full bg-accent" />
-                {CLINIC.freeConsultDay}: Free Consultation
-              </span>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-brand to-brand-dark relative overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 opacity-10" style={{
-                backgroundImage: "radial-gradient(circle at 20% 20%, white 1px, transparent 1px)",
-                backgroundSize: "24px 24px",
-              }} />
-              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
-                <div className="text-6xl">🏥</div>
-                <p className="mt-4 text-xl font-medium leading-snug">
-                  Care that listens. <br />Doctors who explain.
-                </p>
-              </div>
-            </div>
-            <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-xl">
-              <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center text-xl">✓</div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Trusted Clinic</p>
-                <p className="text-xs text-slate-500">UP-Bihar border region</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section className="bg-gradient-to-r from-amber-400 to-amber-500">
         <div className="mx-auto max-w-7xl px-4 py-6 md:py-7 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center md:text-left">
@@ -214,18 +152,51 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl bg-slate-900 p-8 text-white">
-            <h3 className="text-2xl font-bold">Emergency? Call us now.</h3>
-            <p className="mt-2 text-slate-300">
-              Our 24x7 line is staffed by clinic personnel ready to guide you.
+          <div className="relative rounded-3xl overflow-hidden shadow-xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={IMAGES.about.mission}
+              alt="Medical team caring for patients"
+              className="w-full h-[420px] object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 text-white">
+              <p className="text-2xl font-bold">Care that listens.</p>
+              <p className="text-sm opacity-90">Doctors who explain. Treatment that respects you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-900 text-white">
+        <div className="mx-auto max-w-7xl px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+          <div className="relative rounded-3xl overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={IMAGES.hero.emergency}
+              alt="Emergency care"
+              className="w-full h-[300px] object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-red-900/60 to-transparent" />
+          </div>
+          <div>
+            <span className="inline-block rounded-full bg-red-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+              24x7 Emergency
+            </span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Need help now?</h2>
+            <p className="mt-3 text-slate-300">
+              Our 24x7 line is staffed by clinic personnel ready to guide you to
+              the right care. Oxygen and nebulizer available on-site.
             </p>
             <a
               href={`tel:${CLINIC.phoneRaw}`}
-              className="mt-5 inline-flex items-center rounded-full bg-red-500 hover:bg-red-600 px-6 py-3 font-semibold text-white"
+              className="mt-5 inline-flex items-center rounded-full bg-red-500 hover:bg-red-600 px-6 py-3 font-semibold text-white shadow-lg"
             >
               📞 {CLINIC.phone}
             </a>
-            <p className="mt-4 text-xs text-slate-400">
+            <p className="mt-3 text-xs text-slate-400">
               For life-threatening emergencies, please also call 108.
             </p>
           </div>

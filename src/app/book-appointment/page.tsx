@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CLINIC } from "@/lib/clinic";
 import { BookingForm } from "@/components/BookingForm";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Book an Appointment",
@@ -10,14 +11,20 @@ export const metadata: Metadata = {
 export default function BookAppointmentPage() {
   return (
     <>
-      <section className="bg-brand-light">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <p className="text-sm font-semibold text-brand uppercase tracking-wider">Book Appointment</p>
-          <h1 className="mt-2 text-4xl md:text-5xl font-bold text-slate-900">
-            See a doctor - online or in-clinic
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-700">
-            Fill in your details below. We'll confirm your slot on WhatsApp
+      <section className="relative h-[340px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={IMAGES.services.header}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand-dark/80 to-slate-900/55" />
+        <div className="relative h-full mx-auto max-w-7xl px-4 flex flex-col justify-end pb-12 text-white">
+          <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Book Appointment</p>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">See a doctor, online or in-clinic</h1>
+          <p className="mt-3 max-w-3xl text-lg opacity-95">
+            Fill in your details below. We will confirm your slot on WhatsApp
             within a few minutes during clinic hours.
           </p>
         </div>
